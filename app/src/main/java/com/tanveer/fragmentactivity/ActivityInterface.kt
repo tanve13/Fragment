@@ -1,5 +1,6 @@
 package com.tanveer.fragmentactivity
 
 interface ActivityInterface {
-    fun ChangeFragmentText()
+
+    fun ChangeFragmentText(string: String)
 }

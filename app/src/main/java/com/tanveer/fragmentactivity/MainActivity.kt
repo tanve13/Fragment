@@ -13,11 +13,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         binding?.btnChangeActivityText?.setOnClickListener{
-            activityInterface?.ChangeFragmentText()
+            activityInterface?.ChangeFragmentText(binding?.etText?.text?.toString()?:"")
         }
     }
-    fun ChangeActivityText(){
-        binding?.btnChangeActivityText?.setText("This is changed from fragment")
+    fun ChangeActivityText(string:String){
+        binding?.btnChangeActivityText?.setText(string)
     }
 
 

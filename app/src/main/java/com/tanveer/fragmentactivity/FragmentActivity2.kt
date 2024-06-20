@@ -50,11 +50,7 @@ class FragmentActivity2 : Fragment(), ActivityInterface {
         super.onViewCreated(view, savedInstanceState)
          //btnChangeActivityText = view.findViewById(R.id.btnChangeActivityText)
         binding?.btnChangeActivityText?.setOnClickListener {
-            mainActivity?.ChangeActivityText()
-        }
-        etEnter = view.findViewById(R.id.etEnter)
-        btnChangeActivityText?.setOnClickListener {
-            mainActivity?.ChangeActivityText()
+         mainActivity?.ChangeActivityText(binding?.etEnter?.text?.toString()?:"")
         }
     }
     companion object {
@@ -76,7 +72,8 @@ class FragmentActivity2 : Fragment(), ActivityInterface {
                 }
             }
     }
-    override fun ChangeFragmentText() {
-      binding?.btnChangeActivityText?.setText("Changed From Activity")
+
+    override fun ChangeFragmentText(string: String) {
+        binding?.btnChangeActivityText?.setText(string)
     }
 }

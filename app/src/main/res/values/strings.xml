@@ -4,4 +4,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="change_activity_text">Change Activity Text</string>
     <string name="enter">Enter</string>
+    <string name="enter_your_choice">Enter Your Choice</string>
+    <string name="enter_anything">Enter Anything</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
 </resources>
