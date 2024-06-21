@@ -6,4 +6,15 @@
     </style>
 
     <style name="Theme.FragmentActivity" parent="Base.Theme.FragmentActivity" />
+    <style name="DatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">#57C2F3</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">#078CF6</item>
+    </style>
+    <style name="TimePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">#57C2F3</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">#078CF6</item>
+    </style>
+
 </resources>

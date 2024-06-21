@@ -12,20 +12,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/etEnter"
+        android:layout_gravity="center"
         android:hint="@string/enter_your_choice"/>
     <Button
         android:id="@+id/btnChangeActivityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:backgroundTint="#7AE37E"
         android:text="@string/change_activity_text" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="#7AE37E"
+        android:textColor="@color/black"
         android:text="@string/date"
         android:id="@+id/btnDate"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:backgroundTint="#7AE37E"
        android:text="@string/time"
         android:id="@+id/btnTime"/>
 </LinearLayout>

@@ -1,13 +1,21 @@
 package com.tanveer.fragmentactivity
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.tanveer.fragmentactivity.databinding.FragmentActivity2Binding
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import kotlin.math.max
+import kotlin.math.min
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +35,9 @@ class FragmentActivity2 : Fragment(), ActivityInterface {
     var btnChangeActivityText : Button? = null
     var etEnter: EditText? = null
     var binding:FragmentActivity2Binding ? = null
-
+    var simpleDateFormat = SimpleDateFormat("dd/MMM/yyyy")
+    var timeFormat = SimpleDateFormat("hh:mm aa")
+    private val TAG = "FragmentActivity2"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        mainActivity = activity as MainActivity
@@ -52,6 +62,39 @@ class FragmentActivity2 : Fragment(), ActivityInterface {
         binding?.btnChangeActivityText?.setOnClickListener {
          mainActivity?.ChangeActivityText(binding?.etEnter?.text?.toString()?:"")
         }
+
+        binding?.btnDate?.setOnClickListener {
+            DatePickerDialog(
+                requireContext(),R.style.DatePickerStyle,{_,year, month, date ->
+                    Log.e(TAG,"year $year month $month date $date")
+                    var calendar = Calendar.getInstance()
+                    calendar.set(year , month , date)
+                    var formattedDate = simpleDateFormat.format(calendar.time)
+                    binding?.btnDate?.setText(formattedDate)
+                  /*  if (calendar.timeInMillis<10 && calendar.timeInMillis>10){
+                        Toast.makeText(requireContext(), "cannot set this date", Toast.LENGTH_SHORT).show()
+                    }*/
+                                                      },
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DATE)).show()
+        }
+        binding?.btnTime?.setOnClickListener {
+            TimePickerDialog(
+                requireContext(),R.style.TimePickerStyle,{_,hour, minute ->
+                    Log.e(TAG,"hour $hour minute $minute")
+                    var calendar = Calendar.getInstance()
+                    calendar.set(Calendar.HOUR_OF_DAY,hour)
+                    calendar.set(Calendar.MINUTE,minute)
+                    var formattedDate = simpleDateFormat.format(calendar.time)
+                    binding?.btnTime?.setText(timeFormat.format(calendar.time))
+                        if(calendar.timeInMillis<9 && calendar.timeInMillis>6){
+                            Toast.makeText(requireContext(), "Cannot set this time", Toast.LENGTH_SHORT).show()
+                        } },
+                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+                Calendar.getInstance().get(Calendar.MINUTE),
+                false).show()
+        }
     }
     companion object {
         /**
@@ -72,8 +115,9 @@ class FragmentActivity2 : Fragment(), ActivityInterface {
                 }
             }
     }
-
     override fun ChangeFragmentText(string: String) {
         binding?.btnChangeActivityText?.setText(string)
     }
 }
+
+
