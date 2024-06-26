@@ -64,33 +64,51 @@ class FragmentActivity2 : Fragment(), ActivityInterface {
         }
 
         binding?.btnDate?.setOnClickListener {
-            DatePickerDialog(
-                requireContext(),R.style.DatePickerStyle,{_,year, month, date ->
-                    Log.e(TAG,"year $year month $month date $date")
+            var datePickerDialog = DatePickerDialog(
+                requireContext(),R.style.DatePickerStyle, { _, year, month, date ->
+                    Log.e(TAG, "year $year month $month date $date")
                     var calendar = Calendar.getInstance()
-                    calendar.set(year , month , date)
+                    calendar.set(year, month, date)
                     var formattedDate = simpleDateFormat.format(calendar.time)
                     binding?.btnDate?.setText(formattedDate)
-                  /*  if (calendar.timeInMillis<10 && calendar.timeInMillis>10){
-                        Toast.makeText(requireContext(), "cannot set this date", Toast.LENGTH_SHORT).show()
-                    }*/
-                                                      },
-                Calendar.getInstance().get(Calendar.YEAR),
+                }
+                ,Calendar.getInstance().get(Calendar.YEAR),
                 Calendar.getInstance().get(Calendar.MONTH),
-                Calendar.getInstance().get(Calendar.DATE)).show()
+                Calendar.getInstance().get(Calendar.DATE))
+                    var calendar = Calendar.getInstance()
+                     calendar.add(Calendar.DATE,-10)
+                     datePickerDialog.datePicker.minDate = calendar.timeInMillis
+                      calendar.add(Calendar.DATE,20)
+                     datePickerDialog.datePicker.maxDate = calendar.timeInMillis
+                datePickerDialog.show()
         }
         binding?.btnTime?.setOnClickListener {
-            TimePickerDialog(
+             TimePickerDialog(
                 requireContext(),R.style.TimePickerStyle,{_,hour, minute ->
                     Log.e(TAG,"hour $hour minute $minute")
                     var calendar = Calendar.getInstance()
                     calendar.set(Calendar.HOUR_OF_DAY,hour)
                     calendar.set(Calendar.MINUTE,minute)
-                    var formattedDate = simpleDateFormat.format(calendar.time)
-                    binding?.btnTime?.setText(timeFormat.format(calendar.time))
-                        if(calendar.timeInMillis<9 && calendar.timeInMillis>6){
-                            Toast.makeText(requireContext(), "Cannot set this time", Toast.LENGTH_SHORT).show()
-                        } },
+                   var newCalendar = Calendar.getInstance()
+                     newCalendar.set(Calendar.HOUR_OF_DAY,9)
+                     var newCalendar1 = Calendar.getInstance()
+                     newCalendar1.set(Calendar.HOUR_OF_DAY,6)
+                     if (calendar.before(newCalendar)) {
+                         Toast.makeText(
+                             requireContext(),
+                             "this time cannot set",
+                             Toast.LENGTH_SHORT
+                         ).show()
+                     }
+                      else if (calendar.after(newCalendar1)) {
+                          Toast.makeText(
+                              requireContext(),
+                              "this time is not valid",
+                              Toast.LENGTH_SHORT
+                          ).show()
+                      }
+                     binding?.btnTime?.setText(timeFormat.format(calendar.time))
+                        },
                 Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
                 Calendar.getInstance().get(Calendar.MINUTE),
                 false).show()
