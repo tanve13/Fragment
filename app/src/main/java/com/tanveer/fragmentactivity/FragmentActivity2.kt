@@ -106,8 +106,9 @@ class FragmentActivity2 : Fragment(), ActivityInterface {
                               "this time is not valid",
                               Toast.LENGTH_SHORT
                           ).show()
-                      }
-                     binding?.btnTime?.setText(timeFormat.format(calendar.time))
+                      }else {
+                         binding?.btnTime?.setText(timeFormat.format(calendar.time))
+                     }
                         },
                 Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
                 Calendar.getInstance().get(Calendar.MINUTE),
