@@ -36,6 +36,6 @@
         android:layout_gravity="center"
         android:textColor="@color/black"
         android:backgroundTint="#7AE37E"
-       android:text="@string/time"
+        android:text="@string/time"
         android:id="@+id/btnTime"/>
 </LinearLayout>
